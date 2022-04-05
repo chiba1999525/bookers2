@@ -3,6 +3,6 @@ class Book < ApplicationRecord
   attachment :image
 
 
-  validates :title, presence: true
-  validates :opinion, presence: true
+  validates :title,  presence: true, length: { in: 2..200 }
+  validates :body, presence: true, length: { in: 2..200 }
 end

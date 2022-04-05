@@ -10,8 +10,8 @@ class BooksController < ApplicationController
        @user = current_user
        @books = Book.all
     if @book.save
-       flash[:notice] = 'メッセージが送信されました'
-       redirect_to books_path
+       flash[:notice] = 'You have created book successfully.'
+       redirect_to book_path(@book.id)
     else
        render :index
     end
@@ -28,7 +28,8 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @new_book = Book.new
-    @user = current_user
+    @user = @book.user
+    @current_user = current_user
   end
 
   def destroy
@@ -38,14 +39,20 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+     @book = Book.find(params[:id])
+  if @book.user != current_user
+    redirect_to books_path
+  end 
+     
   end
 
   def update
+       @new_book = Book.new
        @book = Book.find(params[:id])
        @book.user_id = current_user.id
-   if  @book = update(book_params)
-      redirect_to book_path(book.id)
+   if  @book.update(book_params)
+       flash[:notice] = 'You have updated book successfully.'
+      redirect_to book_path(@book.id)
    else
      render :edit
    end
@@ -53,7 +60,7 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :image, :opinion)
+    params.require(:book).permit(:title, :image, :body)
   end
 
 end

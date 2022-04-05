@@ -1,7 +1,7 @@
 <h1>Editing Book</h1>
 
          <% if @book.errors.any? %>
-         <%= @book.errors.count %>件のエラーが発生しました
+         <%= @book.errors.count %> error prohibited this obj from being saved
          <% @book.errors.full_messages.each do |message| %>
          <%= message %>
          <% end %>
@@ -11,7 +11,7 @@
 <p>Title
 <%= f.text_field:title %></p>
 <p>Opinion
-<%= f.text_field:opinion %></p>
+<%= f.text_area:body %></p>
 
 <%= f.submit 'Update Book' %>
 <% end %>
