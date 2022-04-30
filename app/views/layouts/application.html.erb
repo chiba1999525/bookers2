@@ -30,20 +30,25 @@
      <% if user_signed_in? %>
 
       <li class="nav-item">
-        <%= link_to "Home", user_path(current_user.id), class:"fas fa-home" %>
+        <%= link_to "商品一覧", user_path(current_user.id), class:"fas fa-home" %>
       </li>
 
       <li class="nav-item">
-         <%= link_to "Users", users_path, class:"fas fa-users" %>
+         <%= link_to "会員一覧", users_path, class:"fas fa-users" %>
       </li>
 
       <li class="nav-item">
-        <%= link_to "Books", books_path, class:"fas fa-book-open" %>
+        <%= link_to "注文履歴一覧", books_path, class:"fas fa-book-open" %>
+      </li>
+      
+      <li class="nav-item">
+        <%= link_to "ジャンル一覧", books_path, class:"fas fa-book-open" %>
       </li>
 
       <li class="nav-item">
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt" %>
+        <%= link_to "ログアウト", destroy_session_path, method: :delete, class:"fas fa-sign-out-alt" %>
       </li>
+      
     <% else %>
 
       <li class="nav-item">

@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @books = Book.all
     @user = current_user
     @book = Book.new
   end
